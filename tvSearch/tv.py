@@ -27,7 +27,8 @@ for item in item_info:
     price = price.text
     price = price.strip()
     prices.append(price)
-    f.write(itemTitle.replace(",", ";") + "," + price + "\n")
+    if ("65" in itemTitle):
+        f.write(itemTitle.replace(",", ";") + "," + price + "\n")
 
 f.close()
 
