@@ -1,3 +1,41 @@
 from urllib.request import urlopen
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup as soup
+
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
+courseURLs = ['https://udapps.nss.udel.edu/CoursesSearch/courseInfo?&courseid=303194&offernum=1&term=2188&session=1&section=010']
+
+def sendEmail(classTitle):
+    MY_ADDRESS = 'your email'
+    PASSWORD = 'your email password'
+    s = smtplib.SMTP(host='smtp.live.com', port=587)
+    s.starttls()
+    s.login(MY_ADDRESS, PASSWORD)
+
+    msg = MIMEMultipart()       # create a message
+
+    msg['From']=MY_ADDRESS
+    msg['To']='vineethgutta@gmail.com'
+    msg['Subject']="Open Seats in %s" % (classTitle)
+
+    s.send_message(msg)
+    del msg
+
+    s.quit()
+    print("Message sent")
+
+for courseURL in courseURLs:
+
+    page = urlopen(courseURL)
+    html = soup(page, 'lxml')
+
+    closed = html.findAll("div", {"id": "closed"})
+
+    if not closed:
+        classTitle = html.findAll("h2", {"class": "itwd-title"})[0].text
+        sendEmail(classTitle)
+
+
 
