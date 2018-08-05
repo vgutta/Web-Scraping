@@ -5,11 +5,14 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-courseURLs = ['https://udapps.nss.udel.edu/CoursesSearch/courseInfo?&courseid=303194&offernum=1&term=2188&session=1&section=010']
+courseURLs = ['https://udapps.nss.udel.edu/CoursesSearch/courseInfo?&courseid=006823&offernum=1&term=2188&session=1&section=010',
+            'https://udapps.nss.udel.edu/CoursesSearch/courseInfo?&courseid=303194&offernum=1&term=2188&session=1&section=010',
+            'https://udapps.nss.udel.edu/CoursesSearch/courseInfo?&courseid=301147&offernum=1&term=2188&session=1&section=010']
 
 def sendEmail(classTitle):
-    MY_ADDRESS = 'your email'
-    PASSWORD = 'your email password'
+    MY_ADDRESS = 'email to send from'
+    PASSWORD = 'your password'
+    
     s = smtplib.SMTP(host='smtp.live.com', port=587)
     s.starttls()
     s.login(MY_ADDRESS, PASSWORD)
@@ -24,7 +27,7 @@ def sendEmail(classTitle):
     del msg
 
     s.quit()
-    print("Message sent")
+    print("Message sent: %s" % (classTitle))
 
 for courseURL in courseURLs:
 
