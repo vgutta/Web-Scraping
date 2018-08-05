@@ -20,7 +20,7 @@ def sendEmail(classTitle):
     msg = MIMEMultipart()       # create a message
 
     msg['From']=MY_ADDRESS
-    msg['To']='vineethgutta@gmail.com'
+    msg['To']='youremail@email.com'
     msg['Subject']="Open Seats in %s" % (classTitle)
 
     s.send_message(msg)
