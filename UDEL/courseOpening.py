@@ -37,7 +37,7 @@ for courseURL in courseURLs:
     closed = html.findAll("div", {"id": "closed"})
 
     if not closed:
-        classTitle = html.findAll("h2", {"class": "itwd-title"})[0].text
+        classTitle = html.find("h2", {"class": "itwd-title"}).text
         sendEmail(classTitle)
 
 
