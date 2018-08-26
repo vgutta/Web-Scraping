@@ -1,3 +1,3 @@
 # Web-Scraping
 
-Web Scraping data from different websites
+Scraped data from different websites
